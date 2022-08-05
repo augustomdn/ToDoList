@@ -18,6 +18,19 @@ const App = () => {
     setList(newList);
   }
 
+  const handleDelete = (item: Item) => {
+    const index = list.findIndex((task) => task.name == item.name);
+
+
+    if (index == -1) {
+      return;
+    }
+    list.splice(index, 1);
+    setList([...list]);
+  }
+
+
+
 
   return (
     <>
@@ -26,7 +39,7 @@ const App = () => {
           <C.Header>Lista de Tarefas</C.Header>
           <AddArea onEnter={handleAddTask} />
           {list.map((item, index) => (
-            <ListItem key={index} item={item} />
+            <ListItem key={index} item={item} onDelete={handleDelete} />
           ))}
         </C.Area>
         <C.Background className='test'>

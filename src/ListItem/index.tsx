@@ -4,11 +4,12 @@ import { useState } from 'react';
 
 type Props = {
     item: Item
+    onDelete: (item: Item) => void;
 }
 
 
 
-export const ListItem = ({ item }: Props) => {
+export const ListItem = ({ item, onDelete }: Props) => {
 
     const [isChecked, setIsChecked] = useState(item.done);
 
@@ -22,7 +23,7 @@ export const ListItem = ({ item }: Props) => {
                 onChange={e => setIsChecked(e.target.checked)}
             />
             <label>{item.name}</label>
-            <button >Delete</button>
+            <button onClick={() => onDelete(item)}>Delete</button>
         </C.Container>
     );
 }
